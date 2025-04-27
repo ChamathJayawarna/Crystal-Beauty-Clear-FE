@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import toast from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function LoginPage(){
     const [email,setEmail] = useState("")
@@ -23,7 +23,7 @@ export default function LoginPage(){
                 const user = response.data.user
 
                 if(user.role === "admin"){
-                    navigate("/admin")
+                    navigate("/home")
                 }else{
                     navigate("/")
                 }
@@ -51,6 +51,13 @@ export default function LoginPage(){
                     setPassword(e.target.value)
                 }} type="password" className="w-[500px] h-[60px] border-white border-[2px] text-white text-center rounded-[10px] m-4" placeholder="Password" />
                 <button onClick={handleLogin} className="w-[500px] h-[60px] bg-red-300 text-white rounded-[10px] hover:bg-red-400 cursor-pointer active:scale-95 transition-transform duration-150">Login</button>
+                <p className="text-red-100 m-[10px]">
+                    Don't have an account yet?
+                    &nbsp;
+                    <span className="text-yellow-200 hover:text-red-400 hover:cursor-pointer">
+                        <Link to={"/register"} >Register Now</Link>
+                    </span>
+                </p>
             </div>
             </div>
         </div>
