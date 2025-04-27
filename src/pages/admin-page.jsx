@@ -4,6 +4,7 @@ import { FaFileInvoice } from "react-icons/fa6";
 import { GiPresent } from "react-icons/gi";
 import AdminProductsPage from "./adminProducts-page";
 import AdminAddProducts from "./adminAddProducts-page";
+import AdminEditProducts from "./adminEditProducts-page";
 
 export default function AdminPage(){
    return(
@@ -20,6 +21,7 @@ export default function AdminPage(){
                 <Route path="/products" element={<AdminProductsPage/>}/>
                 <Route path="/orders" element={<h1>Orders</h1>}/>
                 <Route path="/addProducts" element={<AdminAddProducts/>}/>
+                <Route path="/editProducts" element={<AdminEditProducts/>}/>
             </Routes>
  
         </div>

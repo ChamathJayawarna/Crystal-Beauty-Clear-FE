@@ -1,20 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import mediaUpload from "../utils/mediaUpload";
 
-export default function AdminAddProducts(){
-
-    const [productId,setProductId] = useState("")
-    const [productName,setProductName] = useState("")
-    const [altNames,setAltNames] = useState("")
-    const [price,setPrice] = useState("")
-    const [labeledPrice,setLabeledPrice] = useState("")
-    const [description,setDescription] = useState("")
-    const [stock,setStock] = useState("")
-    const [images,setImages] = useState([])
+export default function AdminEditProducts(){
+    const locationData = useLocation()
     const navigate = useNavigate()
+    if(locationData.state == null){
+        window.location.href = "/admin/products"
+    }
+
+    const [productId,setProductId] = useState(locationData.state.productId)
+    const [productName,setProductName] = useState(locationData.state.productName)
+    const [altNames,setAltNames] = useState(locationData.state.altNames.join(","))
+    const [price,setPrice] = useState(locationData.state.price)
+    const [labeledPrice,setLabeledPrice] = useState(locationData.state.labeledPrice)
+    const [description,setDescription] = useState(locationData.state.description)
+    const [stock,setStock] = useState(locationData.state.stock)
+    const [images,setImages] = useState([])
+    
 
     async function handleSubmit(){
         const promisesArray = []
@@ -23,11 +28,13 @@ export default function AdminAddProducts(){
             promisesArray[i] = promise
         }
         try{
-        const result = await Promise.all(promisesArray)
+        let result = await Promise.all(promisesArray)
+        if(images.length == 0){
+            result = locationData.state.images
+        }
 
         const altNamesArray = altNames.split(",")
         const product = {
-            productId : productId,
             productName : productName,
             altNames : altNamesArray,
             price : price,
@@ -37,25 +44,25 @@ export default function AdminAddProducts(){
             images : result
         }
         const token = localStorage.getItem("token")
-        await axios.post(import.meta.env.VITE_BACKEND_URL+"api/product",product,{
+        await axios.put(import.meta.env.VITE_BACKEND_URL+"api/product/"+productId,product,{
             headers:{
                 "Authorization": "Bearer "+token
             }
         })
-        toast.success("Product added successfully")
+        toast.success("Product updated successfully")
         navigate("/admin/products")
 
     }catch(error){       
-        toast.error("Product adding failed")
+        toast.error("Product updating failed")
     }       
     }
 
     return(
         <div className="w-full h-full rounded-lg flex justify-center items-center">
             <div className="bg-white w-[500px] h-[600px] rounded-lg shadow-2xl flex flex-col items-center">
-                <h1 className="text-3xl font-bold p-3">Add Products</h1>
+                <h1 className="text-3xl font-bold p-3">Edit Products</h1>
 
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} className="w-[400px] h-[50px] text-center rounded-xl m-2 border border-gray-500" placeholder="Product Id">
+                <input disabled value={productId} onChange={(e)=>{setProductId(e.target.value)}} className="w-[400px] h-[50px] text-center rounded-xl m-2 border border-gray-500" placeholder="Product Id">
                 </input>
 
                 <input value={productName} onChange={(e)=>{setProductName(e.target.value)}} className="w-[400px] h-[50px] text-center rounded-xl m-2 border border-gray-500" placeholder="Product Name">
@@ -80,7 +87,7 @@ export default function AdminAddProducts(){
                 </input>
 
                 <div className="w-[400px] h-[100px] flex items-center justify-between">
-                    <button onClick={handleSubmit} className="w-[180px] h-[50px] bg-green-600 text-center rounded-lg cursor-pointer hover:bg-green-800 hover:text-white">Submit</button> 
+                    <button onClick={(handleSubmit)} className="w-[180px] h-[50px] bg-blue-600 text-center rounded-lg cursor-pointer hover:bg-blue-800 hover:text-white">Edit</button> 
                     <Link to={"/admin/products"} className="w-[180px] h-[50px] bg-red-500 text-center flex items-center justify-center rounded-lg cursor-pointer hover:bg-red-700 hover:text-white">Cancel</Link>        
                 </div>
 
