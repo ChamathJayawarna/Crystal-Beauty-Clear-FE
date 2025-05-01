@@ -5,6 +5,7 @@ import { FaRegTrashCan } from "react-icons/fa6"
 import { MdAdd } from "react-icons/md"
 import { TfiPencilAlt } from "react-icons/tfi"
 import { Link, useNavigate } from "react-router-dom"
+import Loader from "../components/loader"
 
 export default function AdminProductsPage(){
     const [products,setProducts] = useState([])
@@ -58,7 +59,8 @@ export default function AdminProductsPage(){
             <Link to={"/admin/addProducts"} className="text-3xl text-color-black bg-red-300 rounded-full p-3 hover:bg-red-400 hover:text-white cursor-pointer absolute right-5 bottom-5">
             <MdAdd />
             </Link>
-            <div className="max-h-[80vh] overflow-y-auto rounded-lg border border-gray-300">
+
+            {loaded&& <div className="max-h-[80vh] overflow-y-auto rounded-lg border border-gray-300">
             <table className="w-full">
                 <thead className="bg-gray-300 sticky top-0 z-10"> 
                     <tr>
@@ -94,7 +96,11 @@ export default function AdminProductsPage(){
                  }          
                 </tbody>
             </table>
-            </div>           
+            </div>} 
+            {
+                !loaded&& 
+                <Loader/>
+            }          
             
         </div>
     )

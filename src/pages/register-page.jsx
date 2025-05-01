@@ -72,10 +72,10 @@ export default function RegisterPage() {
           <button onClick={handleRegister} className="w-[500px] h-[60px] bg-red-300 text-white rounded-[10px] hover:bg-red-400 cursor-pointer active:scale-95 transition-transform duration-150 mt-4">
             Register
           </button>
-          <p className="text-red-300 m-[10px]">
+          <p className="text-red-100 m-[10px]">
             Already have an account?
             &nbsp;
-            <span className="text-yellow-600 hover:text-red-600 hover:cursor-pointer">
+            <span className="text-yellow-200 hover:text-red-600 hover:cursor-pointer">
               <Link to={"/login"}>Login Now</Link>
             </span>
           </p>

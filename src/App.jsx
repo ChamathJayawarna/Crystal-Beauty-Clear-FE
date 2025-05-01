@@ -20,12 +20,10 @@ function App() {
     <Route path="/login" element={<LoginPage/>}></Route>
     <Route path="/admin/*" element={<AdminPage/>}></Route>
     <Route path="/register" element={<RegisterPage/>}></Route>
-    <Route path="/home" element={<HomePage/>}></Route>
+    <Route path="/*" element={<HomePage/>}></Route>
+
     <Route path="/testing" element={<TestingPage/>}></Route>
     <Route path="/testingImages" element={<TestingImages/>}></Route>
-    <Route path="/" element={<h1>Home</h1>}></Route>
-    <Route path="/*" element={<h1>404 NOT FOUND</h1>}></Route>
-
 
     </Routes>
     </BrowserRouter>
