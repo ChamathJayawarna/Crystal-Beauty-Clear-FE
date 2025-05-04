@@ -23,7 +23,7 @@ export default function ProductsPage(){
     )
 
     return(
-        <div className="w-full h-full">
+        <div className="w-full min-h-screen bg-red-200">
             {
                 productLoaded?
                 <div className="w-full h-full flex flex-wrap justify-center">
