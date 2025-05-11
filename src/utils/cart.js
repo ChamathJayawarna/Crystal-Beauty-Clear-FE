@@ -46,3 +46,39 @@ export function removeFromCart(productId){
     return cart
 
 }
+
+export function getSubTotal(){
+    let cart = getCart()
+    let subTotal = 0
+    cart.forEach(
+        (product)=>{
+            subTotal += product.labeledPrice * product.quantity
+
+        }
+    )
+    return subTotal
+}
+
+export function getNetTotal(){
+    let cart = getCart()
+    let netTotal = 0
+    cart.forEach(
+        (product)=>{
+            netTotal += product.price * product.quantity
+
+        }
+    )
+    return netTotal
+}
+
+export function getDiscountTotal(){
+    let cart = getCart()
+    let discountTotal = 0
+    cart.forEach(
+        (product)=>{
+            discountTotal += (product.labeledPrice * product.quantity) - (product.price * product.quantity)
+
+        }
+    )
+    return discountTotal
+}
