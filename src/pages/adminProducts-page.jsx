@@ -55,7 +55,7 @@ export default function AdminProductsPage(){
     }
 
     return(
-        <div className="w-full h-full rounded-lg relative p-3">
+        <div className="w-full h-full rounded-lg relative p-1">
             <Link to={"/admin/addProducts"} className="text-3xl text-color-black bg-red-300 rounded-full p-3 hover:bg-red-400 hover:text-white cursor-pointer absolute right-5 bottom-5">
             <MdAdd />
             </Link>
@@ -63,7 +63,7 @@ export default function AdminProductsPage(){
             {loaded&& <div className="max-h-[80vh] overflow-y-auto rounded-lg border border-gray-300">
             <table className="w-full">
                 <thead className="bg-gray-300 sticky top-0 z-10"> 
-                    <tr>
+                    <tr className="border b-2">
                     <th className="p-2">Product Id</th> 
                     <th className="p-2">Product Name</th>
                     <th className="p-2">Price</th>
@@ -85,8 +85,8 @@ export default function AdminProductsPage(){
                                <td className="p-2">{prdct.stock}</td>
                                <td className="p-2">
                                 <div className="w-full h-full flex justify-center">
-                                <FaRegTrashCan onClick={()=>{deleteProduct(prdct.productId)}} className="text-[25px] m-[15px] hover:text-red-900 hover:cursor-pointer"/>
-                                <TfiPencilAlt onClick={()=>{navigate("/admin/editProducts",{state:prdct})}} className="text-[25px] m-[15px] hover:text-blue-900 hover:cursor-pointer"/> 
+                                <FaRegTrashCan onClick={()=>{deleteProduct(prdct.productId)}} className="text-[25px] m-[7px] hover:text-red-900 hover:cursor-pointer"/>
+                                <TfiPencilAlt onClick={()=>{navigate("/admin/editProducts",{state:prdct})}} className="text-[25px] m-[7px] hover:text-blue-900 hover:cursor-pointer"/> 
                                 </div>                               
                                </td>
                             </tr>

@@ -5,6 +5,7 @@ import { GiPresent } from "react-icons/gi";
 import AdminProductsPage from "./adminProducts-page";
 import AdminAddProducts from "./adminAddProducts-page";
 import AdminEditProducts from "./adminEditProducts-page";
+import AdminOrders from "./adminOrders-page";
 
 export default function AdminPage(){
    return(
@@ -19,7 +20,7 @@ export default function AdminPage(){
             <Routes>
                 <Route path="/users" element={<h1>Users</h1>}/>
                 <Route path="/products" element={<AdminProductsPage/>}/>
-                <Route path="/orders" element={<h1>Orders</h1>}/>
+                <Route path="/orders" element={<AdminOrders/>}/>
                 <Route path="/addProducts" element={<AdminAddProducts/>}/>
                 <Route path="/editProducts" element={<AdminEditProducts/>}/>
             </Routes>
