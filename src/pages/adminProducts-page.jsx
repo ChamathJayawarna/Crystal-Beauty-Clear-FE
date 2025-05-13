@@ -56,11 +56,11 @@ export default function AdminProductsPage(){
 
     return(
         <div className="w-full h-full rounded-lg relative p-1">
-            <Link to={"/admin/addProducts"} className="text-3xl text-color-black bg-red-300 rounded-full p-3 hover:bg-red-400 hover:text-white cursor-pointer absolute right-5 bottom-5">
+            <Link to={"/admin/addProducts"} className="text-3xl text-color-black bg-red-300 rounded-full p-2 hover:bg-red-400 hover:text-white cursor-pointer absolute right-5 bottom-5">
             <MdAdd />
             </Link>
 
-            {loaded&& <div className="max-h-[80vh] overflow-y-auto rounded-lg border border-gray-300">
+            {loaded&& <div className="max-h-[85vh] overflow-y-auto rounded-lg border border-gray-300">
             <table className="w-full">
                 <thead className="bg-gray-300 sticky top-0 z-10"> 
                     <tr className="border b-2">
@@ -80,8 +80,8 @@ export default function AdminProductsPage(){
                             <tr key={index} className="border b-2 border-gray-500 text-center hover:bg-red-300 hover:text-white">
                                <td className="p-2">{prdct.productId}</td>
                                <td className="p-2">{prdct.productName}</td>
-                               <td className="p-2">{prdct.price}</td>
-                               <td className="p-2">{prdct.labeledPrice}</td>
+                               <td className="p-2">{prdct.price.toFixed(2)}</td>
+                               <td className="p-2">{prdct.labeledPrice.toFixed(2)}</td>
                                <td className="p-2">{prdct.stock}</td>
                                <td className="p-2">
                                 <div className="w-full h-full flex justify-center">
